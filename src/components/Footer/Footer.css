@@ -1,0 +1,23 @@
+.footer-wrapper {
+    position : fixed;
+    bottom : 0;
+    width: 100%;
+}
+
+.footer {
+    display: flex;    
+    height: 100px;
+    background-color: #001E3C;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-footer {
+    margin-left: 50px;
+}
+
+.copyright {
+    color: #fff;
+    margin-right: 50px;
+}
+
