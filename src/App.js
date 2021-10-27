@@ -8,7 +8,11 @@ import './App.css';
 function App() {
   const [user, setUser] = useState(null);
   
-  return user ? <AuthWebsite logout={() => setUser(null)} user={user} /> : <NoAuthWebsite login={username => setUser(username)} />
+  return (
+    <div className='wrapper-app'>
+      {user ? <AuthWebsite logout={() => setUser(null)} user={user} /> : <NoAuthWebsite login={username => setUser(username)} />}
+    </div>
+  ) 
 };
 
 export default App;

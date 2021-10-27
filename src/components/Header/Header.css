@@ -1,16 +1,16 @@
-.button-wrapper {
-    position: absolute;
-    right: 50px;
+.wrapper-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .app-logo {
     width: 160px;
 }
 
-.btn-header {
-    margin-left: 20px !important;
-}
-
-.logo-wrapper {
-    margin-left: 20px;
+.links-header a{
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
 }
