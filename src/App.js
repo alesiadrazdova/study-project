@@ -1,15 +1,14 @@
+import React, { useState } from 'react';
+
+import AuthWebsite from './components/AuthWebsite';
+import NoAuthWebsite from './components/NoAuthWebsite';
 
 import './App.css';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Footer />
-    </div>
-  );
-}
+  const [user, setUser] = useState(null);
+  
+  return user ? <AuthWebsite logout={() => setUser(null)} user={user} /> : <NoAuthWebsite login={username => setUser(username)} />
+};
 
 export default App;
