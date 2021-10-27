@@ -1,0 +1,16 @@
+.button-wrapper {
+    position: absolute;
+    right: 50px;
+}
+
+.app-logo {
+    width: 160px;
+}
+
+.btn-header {
+    margin-left: 20px !important;
+}
+
+.logo-wrapper {
+    margin-left: 20px;
+}
