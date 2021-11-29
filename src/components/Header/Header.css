@@ -1,11 +1,35 @@
-.wrapper-header {
+ul {
+    padding-inline-start: 0;
+}
+
+/* .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+} */
+
+.header-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-links li{
+    list-style-type: none;
+}
+
+.wrapper-header {
+    max-width: 1500px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .app-logo {
     width: 160px;
+}
+
+.links-header {
+    width: 500px;
 }
 
 .links-header a{

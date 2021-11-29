@@ -1,25 +1,38 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+
 
 import { AppBar, Box, Toolbar, Button } from '@mui/material';
-import logo from '../../logo.svg';
+import logowight from '../../assets/images/logo-wight.svg';
 
 import './Header.css';
 
-const Header = () => {
+const Header = ({ onClick }) => {
+    
+    const token = localStorage.getItem('token');
+    // console.log(role)
+
+    const decoded = jwt_decode(token);
+    const role = decoded.role;
+    
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar className='wrapper-header'>
                     <div className='logo-wrapper'>
-                        <img src={logo} className="app-logo" alt="logo" />
+                    <Link to = '/'><img src={logowight} className="app-logo" alt="logo" /></Link>
                     </div>
-                    <div className='links-header'>
-                        <a href='/'>Find Events</a>
-                        <a href='/'>My Tickets</a>
-                        <a href='/'>Help</a>
-                    </div>
+                    <nav className='links-header'>
+                        <ul className='header-links'>
+                        { role === 'ADMIN' ? <li><Link to='/creating'>Create Events</Link></li> : null  }
+                            
+                            <li><Link to='/myevents'>My Tickets</Link></li>
+                            <li><Link to='/help'>Help</Link></li>                           
+                        </ul>
+                    </nav>
                     <div className='button-wrapper'>
-                        <Button color='inherit' className='btn-header'>Login</Button>
+                        <Button onClick={onClick} color='inherit'>Logout</Button>
                     </div>
                 </Toolbar>
             </AppBar>
