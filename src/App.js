@@ -11,9 +11,9 @@ function App() {
 
   
   return user ? (
-  <AuthWebsite logout={() => setUser(null)} user={user} />
+  <AuthWebsite logout={() => setUser(null)} user={user}/>
    ) : (
-   <NoAuthWebsite login={username => setUser(username)} />
+   <NoAuthWebsite login={username => setUser(username)}  />
    )
 };
 

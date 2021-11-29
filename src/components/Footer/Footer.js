@@ -1,6 +1,6 @@
 import React from "react";
 
-import logo from '../../logo.svg';
+import logowight from '../../assets/images/logo-wight.svg';
 
 import './Footer.css';
 
@@ -9,7 +9,7 @@ export default function Footer() {
         <div className='footer-wrapper'>
             <div className='footer'>
                 <div className='logo-footer'>
-                    <img src={logo} className="app-logo" alt="logo" />
+                    <img src={logowight} className="app-logo" alt="logo" />
                 </div>
                 <div className='copyright'>
                     <p>© Copyright Event 2021. All Right Reserved.</p>
