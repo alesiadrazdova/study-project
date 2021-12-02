@@ -18,7 +18,7 @@ ul {
 }
 
 .wrapper-header {
-    max-width: 1500px;
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,6 +30,10 @@ ul {
 
 .links-header {
     width: 500px;
+}
+
+.link-hidden {
+    width: 160px;
 }
 
 .links-header a{

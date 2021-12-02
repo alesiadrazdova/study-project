@@ -7,9 +7,9 @@ import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
+ 
 
 
-  
   return user ? (
   <AuthWebsite logout={() => setUser(null)} user={user}/>
    ) : (

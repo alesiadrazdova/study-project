@@ -11,7 +11,6 @@ import ListEventsContainer from './ListEvents/ListEventsContainer';
 import './AuthWebsite.css';
 
 function AuthWebsite({ logout }) {
-    const role = localStorage.getItem('role');
 
     return (
         <>
@@ -20,7 +19,7 @@ function AuthWebsite({ logout }) {
 
                 <Switch>
                     <Route path='/' component={ListEventsContainer} exact />
-                    {role === 'ADMIN' ? <Route path='/creating' component={CreateEvents} /> : null}
+                    <Route path='/creating' component={CreateEvents} /> 
                     <Route path='/myevents' component={BookedEvents} />
                     <Route path='/help' component={Help} />
                 </Switch>               

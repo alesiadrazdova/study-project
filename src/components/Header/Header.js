@@ -14,7 +14,7 @@ const Header = ({ onClick }) => {
     // console.log(role)
 
     const decoded = jwt_decode(token);
-    const role = decoded.role;
+    const role = decoded.roles[0];
     
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -25,7 +25,7 @@ const Header = ({ onClick }) => {
                     </div>
                     <nav className='links-header'>
                         <ul className='header-links'>
-                        { role === 'ADMIN' ? <li><Link to='/creating'>Create Events</Link></li> : null  }
+                        { role === 'ADMIN' ? <li><Link to='/creating'>Create Events</Link></li> : <div className='link-hidden'></div>  }
                             
                             <li><Link to='/myevents'>My Tickets</Link></li>
                             <li><Link to='/help'>Help</Link></li>                           

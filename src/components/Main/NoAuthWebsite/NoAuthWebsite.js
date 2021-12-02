@@ -21,7 +21,7 @@ function NoAuthWebsite({ login }) {
             setValues({});
         };
     }, []);
-    
+
     const handleSubmit = (e) => {
 
         e.preventDefault();
@@ -31,10 +31,8 @@ function NoAuthWebsite({ login }) {
             password: values.password
         })
             .then((response) => {
-                
-                login(values.username);
                 localStorage.setItem('token', response.data.token);
-               
+                login(values.username);
                 setValues({
                     username: '',
                     password: '',
@@ -47,7 +45,7 @@ function NoAuthWebsite({ login }) {
             })
     };
 
-    
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
