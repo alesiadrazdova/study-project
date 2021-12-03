@@ -13,6 +13,7 @@ function NoAuthWebsite({ login }) {
         username: '',
         password: ''
     });
+    
     const [auth, setAuth] = useState(false);
 
     useEffect(() => {

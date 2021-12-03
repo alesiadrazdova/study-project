@@ -16,13 +16,13 @@ function ListEvents(props) {
                         <div>
                             <img src={event.picture} alt='img' />
                         </div>
-                        <h4>{event.nameevent}</h4>
+                        <h3>{event.nameevent}</h3>
                         <p>{event.description}</p>
-                        <span>{event.datestart}</span>
-                        <span>{event.dateend}</span>
-                        <span>{event.registstart}</span>
-                        <span>{event.registend}</span>
-                        <span>{event.address}</span>
+                        <p><span>Date start: </span>{event.datestart}</p>
+                        <p><span>Date end: </span>{event.dateend}</p>
+                        <p><span>Registration start: </span>{event.registstart}</p>
+                        <p><span>End of registration: </span>{event.registend}</p>
+                        <p><span>Location: </span>{event.address}</p>
                     </div>
                 })}
             </div>
