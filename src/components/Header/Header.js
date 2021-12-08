@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ContextRole } from '../../Context.js';
+import { ContextToken } from '../../Context.js';
 import { Link } from 'react-router-dom';
 
 import { AppBar, Box, Toolbar, Button } from '@mui/material';
@@ -9,7 +9,11 @@ import './Header.css';
 
 const Header = ({ onClick }) => {
 
-    const roleValue = React.useContext(ContextRole);
+    const token = React.useContext(ContextToken);
+
+    const role = token.roles[0];
+
+    const [roleValue] = React.useState(role);
 
     return (
         <Box sx={{ flexGrow: 1 }}>

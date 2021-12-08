@@ -3,8 +3,11 @@ import axios from 'axios';
 
 import ListEvents from './ListEvents';
 import OnLoadingEventData from './LoadingEventsData';
+import { ContextToken } from '../../../../Context';
 
 function ListEventsContainer() {
+
+    const token = React.useContext(ContextToken);
 
     const DataLoading = OnLoadingEventData(ListEvents);
     const [eventState, setEventState] = useState(
@@ -17,7 +20,7 @@ function ListEventsContainer() {
     useEffect(() => {
         setEventState({ loading: true });
         const baseURL = 'http://localhost:8000/list/events';
-        axios.get(baseURL)
+        axios.post(baseURL, {token})
             .then((res) => {
                 const response = res.data;
                 setEventState({ 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ContextRole } from '../../../Context.js';
+import React from 'react';
+import { ContextToken } from '../../../Context.js';
 import { Switch, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
@@ -14,13 +14,10 @@ import './AuthWebsite.css';
 
 function AuthWebsite({ logout }) {
 
-    const token = localStorage.getItem('token');
-    const decoded = jwt_decode(token);
-    const role = decoded.roles[0];
-    const [roleValue] = useState(role);
+    const token = jwt_decode(localStorage.getItem('token'));
 
     return (
-        <ContextRole.Provider value={roleValue}>
+        <ContextToken.Provider value={token}>
             <Header onClick={() => { logout() }} />
             <div className="App">
                 <Switch>
@@ -31,7 +28,7 @@ function AuthWebsite({ logout }) {
                 </Switch>
             </div>
             <Footer />
-        </ContextRole.Provider>
+        </ContextToken.Provider>
     );
 };
 
