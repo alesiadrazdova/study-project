@@ -1,14 +1,18 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { ContextToken } from '../../../../Context';
 
 import picturepage from '../../../../assets/images/create-event.svg';
 
 import './CreateEvents.css'
 
+
 const baseURL = 'http://localhost:8000/list/events';
 
 function CreateEvents() {
+
+    const token = React.useContext(ContextToken);
 
     const [values, setValues] = useState({
         nameevent: '',
@@ -20,7 +24,6 @@ function CreateEvents() {
         address: '',
         picture: ''
     });
-
     
     useEffect(() => {
 
@@ -41,7 +44,8 @@ function CreateEvents() {
             registstart: values.registstart,
             registend: values.registend,
             address: values.address,
-            picture: values.picture
+            picture: values.picture,
+            token
         })
             .then((response) => {
                 const event = response.data;
