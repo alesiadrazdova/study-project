@@ -1,5 +1,4 @@
 import React from 'react';
-import { ContextToken } from '../../../Context.js';
 import { Switch, Route } from 'react-router-dom';
 
 import Footer from '../../Footer/Footer';
@@ -13,11 +12,8 @@ import './AuthWebsite.css';
 
 function AuthWebsite({ logout }) {
 
-    const token = localStorage.getItem('token');
-  
-
     return (
-        <ContextToken.Provider value={token}>
+        <>
             <Header onClick={() => { logout() }} />
             <div className="App">
                 <Switch>
@@ -28,7 +24,8 @@ function AuthWebsite({ logout }) {
                 </Switch>
             </div>
             <Footer />
-        </ContextToken.Provider>
+        </>
+
     );
 };
 
