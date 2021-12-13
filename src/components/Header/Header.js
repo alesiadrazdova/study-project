@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { ContextRole } from '../../Context.js';
+import { ContextToken } from '../../Context.js';
 import { Link } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 import { AppBar, Box, Toolbar, Button } from '@mui/material';
 import logowight from '../../assets/images/logo-wight.svg';
@@ -9,7 +10,12 @@ import './Header.css';
 
 const Header = ({ onClick }) => {
 
-    const roleValue = React.useContext(ContextRole);
+    const token = React.useContext(ContextToken);
+    const tokenDecoded = jwt_decode(token);
+    const role = tokenDecoded.roles[0];
+
+    
+    const [roleValue] = React.useState(role);
 
     return (
         <Box sx={{ flexGrow: 1 }}>

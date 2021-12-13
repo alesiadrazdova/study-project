@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Button } from '@mui/material';
+
 import './ListEvents.css'
 
 
@@ -22,7 +24,8 @@ function ListEvents(props) {
                         <p><span>Date end: </span>{event.dateend}</p>
                         <p><span>Registration start: </span>{event.registstart}</p>
                         <p><span>End of registration: </span>{event.registend}</p>
-                        <p><span>Location: </span>{event.address}</p>
+                        <p className='last-description'><span>Location: </span>{event.address}</p>
+                        <Button variant='contained'>Registration</Button>
                     </div>
                 })}
             </div>

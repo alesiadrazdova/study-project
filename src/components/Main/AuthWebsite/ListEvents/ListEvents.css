@@ -8,20 +8,23 @@ span {
 
 .card-wrapper {
     display: flex;
-    justify-content: space-between;   
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 30px;
-
-   
 }
 
-.card {    
+.card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 270px;
-    height: 380px;
+    justify-content: space-evenly;    
+    width: 15vw;
     border: 2px solid #007FFF;
     border-radius: 4px;
-    margin-right: 20px;
-    padding: 20px;
-    
+    margin: 0 15px 40px 0;
+    padding: 15px;
+}
+
+.last-description {
+    margin-bottom: 40px;
 }
