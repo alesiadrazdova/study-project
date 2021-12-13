@@ -23,7 +23,6 @@ function CreateEvents() {
         address: '',
         picture: ''
     });
-
     
     useEffect(() => {
 
