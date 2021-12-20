@@ -12,12 +12,17 @@ import './AuthWebsite.css';
 
 function AuthWebsite({ logout }) {
 
+    const onClick = () => {
+         logout();
+         localStorage.removeItem('token');
+         }
+
     return (
         <>
-            <Header onClick={() => { logout() }} />
+            <Header  onClick={ onClick }/>
             <div className="App">
                 <Switch>
-                    <Route path='/' component={ListEventsContainer} exact />
+                    <Route path='/events' component={ListEventsContainer} />
                     <Route path='/creating' component={CreateEvents} />
                     <Route path='/myevents' component={BookedEvents} />
                     <Route path='/help' component={Help} />

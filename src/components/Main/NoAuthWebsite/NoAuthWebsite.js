@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import logoblue from '../../../assets/images/logo-blue.svg';
 import picture from '../../../assets/images/Picture.svg';
@@ -15,6 +16,12 @@ function NoAuthWebsite({ login }) {
     });
     
     const [auth, setAuth] = useState(false);
+
+        let history = useHistory();   //Go to the event page after login
+
+        const change = () => {
+            history.push('/events');
+        };
 
     useEffect(() => {
 
@@ -34,10 +41,11 @@ function NoAuthWebsite({ login }) {
             .then((response) => {
                 localStorage.setItem('token', response.data.token);
                 login(values.username);
+                change();
                 setValues({
                     username: '',
                     password: '',
-                })
+                });
             })
             .catch(function (error) {
 
