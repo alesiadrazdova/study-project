@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 
 import Footer from '../../Footer/Footer';
 import Header from '../../Header/Header';
@@ -12,9 +12,11 @@ import './AuthWebsite.css';
 
 function AuthWebsite({ logout }) {
 
+let history = useHistory();
     const onClick = () => {
          logout();
          localStorage.removeItem('token');
+         history.push('/');        
          }
 
     return (
@@ -23,7 +25,7 @@ function AuthWebsite({ logout }) {
             <div className="App">
                 <Switch>
                     <Route path='/events' component={ListEventsContainer} />
-                    <Route path='/creating' component={CreateEvents} />
+                    <Route path='/createevent' component={CreateEvents} />
                     <Route path='/myevents' component={BookedEvents} />
                     <Route path='/help' component={Help} />
                 </Switch>

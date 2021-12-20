@@ -7,21 +7,18 @@ span {
 }
 
 .card-wrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-gap: 20px;
     margin-top: 30px;
 }
 
 .card {
-    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;    
-    width: 15vw;
+    justify-content: space-evenly;
     border: 2px solid #007FFF;
     border-radius: 4px;
-    margin: 0 15px 40px 0;
     padding: 15px;
 }
 
