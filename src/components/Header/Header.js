@@ -22,11 +22,11 @@ const Header = ({ onClick }) => {
             <AppBar position="static">
                 <Toolbar className='wrapper-header'>
                     <div className='logo-wrapper'>
-                        <Link to='/'><img src={logowight} className="app-logo" alt="logo" /></Link>
+                        <Link to='/events'><img src={logowight} className="app-logo" alt="logo" /></Link>
                     </div>
                     <nav className='links-header'>
                         <ul className='header-links'>
-                            {roleValue === 'ADMIN' ? <li><Link to='/creating'>Create Events</Link></li> : <div className='link-hidden'></div>}
+                            {roleValue === 'ADMIN' ? <li><Link to='/createevent'>Create Events</Link></li> : <div className='link-hidden'></div>}
 
                             <li><Link to='/myevents'>My Tickets</Link></li>
                             <li><Link to='/help'>Help</Link></li>

@@ -6,12 +6,15 @@ import { ContextToken } from '../../../../Context';
 import picturepage from '../../../../assets/images/create-event.svg';
 
 import './CreateEvents.css'
+import { useHistory } from 'react-router-dom';
 
 const baseURL = 'http://localhost:8000/list/event/create';
 
 function CreateEvents() {
 
     const token = React.useContext(ContextToken);
+
+    let history = useHistory();
 
     const [values, setValues] = useState({
         nameevent: '',
@@ -25,7 +28,7 @@ function CreateEvents() {
     });
     
     useEffect(() => {
-
+        
         return () => {
             setValues({});
         };
@@ -59,6 +62,7 @@ function CreateEvents() {
                     address: '',
                     picture: ''
                 })
+                history.push('/events');
             })
             .catch(function (error) {
                 console.log(error);
