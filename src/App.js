@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   const [user, setUser] = useState(null);
 
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   useEffect(() => {
     setUser(token);

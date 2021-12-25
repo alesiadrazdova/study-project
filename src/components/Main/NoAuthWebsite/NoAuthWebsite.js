@@ -39,7 +39,7 @@ function NoAuthWebsite({ login }) {
             password: values.password
         })
             .then((response) => {
-                localStorage.setItem('token', response.data.token);
+                sessionStorage.setItem('token', response.data.token);
                 login(values.username);
                 change();
                 setValues({

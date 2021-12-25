@@ -15,7 +15,7 @@ function AuthWebsite({ logout }) {
 let history = useHistory();
     const onClick = () => {
          logout();
-         localStorage.removeItem('token');
+         sessionStorage.removeItem('token');
          history.push('/');        
          }
 
