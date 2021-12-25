@@ -81,13 +81,19 @@ function NoAuthWebsite({ login }) {
                             type='text'
                             placeholder='username'
                             name='username'
-                            onChange={handleChange} />
+                            onChange={handleChange}
+                            required
+                            minLength={8}
+                            maxLength={20} />
                         <input
                             value={values.password}
                             type='password'
                             placeholder='password'
                             name='password'
-                            onChange={handleChange} />
+                            onChange={handleChange}
+                            required
+                            minLength={4}
+                            maxLength={10} />
                         <p className={auth ? 'message' : 'hidden'}>Username or password entered incorrectly!</p>
                         <button>login</button>
                     </form>

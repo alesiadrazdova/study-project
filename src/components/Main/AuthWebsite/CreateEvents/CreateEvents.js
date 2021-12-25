@@ -10,7 +10,10 @@ import { useHistory } from 'react-router-dom';
 
 const baseURL = 'http://localhost:8000/list/event/create';
 
+
 function CreateEvents() {
+
+    const [err, setErr] = useState(false);
 
     const token = React.useContext(ContextToken);
 
@@ -26,47 +29,54 @@ function CreateEvents() {
         address: '',
         picture: ''
     });
-    
+
     useEffect(() => {
-        
+
         return () => {
             setValues({});
         };
     }, []);
 
+
     const handleSubmit = (e) => {
 
         e.preventDefault();
 
-        axios.post(baseURL, {
-            nameevent: values.nameevent,
-            description: values.description,
-            datestart: values.datestart,
-            dateend: values.dateend,
-            registstart: values.registstart,
-            registend: values.registend,
-            address: values.address,
-            picture: values.picture,
-            token
-        })
-            .then((response) => {
-                const event = response.data;
-                console.log(event);
-                setValues({
-                    nameevent: '',
-                    description: '',
-                    datestart: '',
-                    dateend: '',
-                    registstart: '',
-                    registend: '',
-                    address: '',
-                    picture: ''
+        if ((values.datestart > values.dateend || values.registstart > values.registend) || (values.registstart && values.registend > values.datestart && values.dateend)) {
+            setErr(true);
+        } else {
+            axios.post(baseURL, {
+                nameevent: values.nameevent,
+                description: values.description,
+                datestart: values.datestart,
+                dateend: values.dateend,
+                registstart: values.registstart,
+                registend: values.registend,
+                address: values.address,
+                picture: values.picture,
+                token
+            })
+                .then((response) => {
+                    const event = response.data;
+                    console.log(event);
+                    setValues({
+                        nameevent: '',
+                        description: '',
+                        datestart: '',
+                        dateend: '',
+                        registstart: '',
+                        registend: '',
+                        address: '',
+                        picture: ''
+                    })
+                    history.push('/events');
                 })
-                history.push('/events');
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+                .catch(function (error) {
+                    console.log(error);
+                    setErr(true);
+
+                })
+        }
     };
 
     const handleChange = (e) => {
@@ -77,6 +87,7 @@ function CreateEvents() {
             [name]: value,
         })
     };
+
 
     return (
         <div className='creat-events'>
@@ -93,44 +104,68 @@ function CreateEvents() {
                             <input
                                 value={values.nameevent}
                                 type='text'
-                                placeholder='Event title'
+                                placeholder='Event title*'
                                 name='nameevent'
                                 className='input-name'
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                                required
+                                pattern='[A-Za-z0-9]{5,50}'
+                                title='Please, only Latin letters'
+                            />
                             <input
                                 value={values.address}
                                 type='text'
-                                placeholder='Address '
+                                placeholder='Address*'
                                 name='address'
                                 className='input-name'
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                                required
+                                pattern='[A-Za-z0-9_-]{5,50}'
+                                title='Please, only Latin letters' />
                         </div>
-                        <div className='top-input'>
-                            <input
-                                value={values.datestart}
-                                type='date'
-                                name='datestart'
-                                className='input-dates'
-                                onChange={handleChange} />
-                            <input
-                                value={values.dateend}
-                                type='date'
-                                name='dateend'
-                                className='input-dates'
-                                onChange={handleChange} />
-                            <input
-                                value={values.registstart}
-                                type='date'
-                                name='registstart'
-                                className='input-dates'
-                                onChange={handleChange} />
-                            <input
-                                value={values.registend}
-                                type='date'
-                                name='registend'
-                                className='input-dates'
-                                onChange={handleChange} />
+                        <div className='middle-input'>
+                            <div className='block-input'>
+                                <label>Data start event*</label>
+                                <input
+                                    value={values.datestart}
+                                    type='date'
+                                    name='datestart'
+                                    className='input-dates'
+                                    onChange={handleChange}
+                                    required />
+                            </div>
+                            <div className='block-input'>
+                                <label>Data end event*</label>
+                                <input
+                                    value={values.dateend}
+                                    type='date'
+                                    name='dateend'
+                                    className='input-dates'
+                                    onChange={handleChange}
+                                    required />
+                            </div>
+                            <div className='block-input'>
+                                <label>Start registration*</label>
+                                <input
+                                    value={values.registstart}
+                                    type='date'
+                                    name='registstart'
+                                    className='input-dates'
+                                    onChange={handleChange}
+                                    required />
+                            </div>
+                            <div className='block-input'>
+                                <label>End registration*</label>
+                                <input
+                                    value={values.registend}
+                                    type='date'
+                                    name='registend'
+                                    className='input-dates'
+                                    onChange={handleChange}
+                                    required />
+                            </div>
                         </div>
+                        <p className={err ? 'message' : 'hidden'}>The event start date cannot be more than the end date or less than the registration dates!</p>
 
                         <div>
                             <textarea
@@ -140,7 +175,8 @@ function CreateEvents() {
                                 name='description'
                                 className='input-area'
                                 onChange={handleChange}
-                                style={{height: 120}} />
+                                style={{ height: 120 }}
+                                maxLength={130} />
 
                             <input
                                 value={values.picture}
