@@ -42,9 +42,38 @@ function CreateEvents() {
 
         e.preventDefault();
 
-        if ((values.datestart > values.dateend || values.registstart > values.registend) || (values.registstart && values.registend > values.datestart && values.dateend)) {
+        // const registstartC = new Date(values.registstart).toLocaleDateString()
+        // const todayDate = new Date().toLocaleDateString();
+        // console.log(registstartC, todayDate)
+
+        let check = false;      
+
+        switch (true) {
+            case new Date().toLocaleDateString() === new Date(values.datestart).toLocaleDateString():
+            case new Date().toLocaleDateString() === new Date(values.dateend).toLocaleDateString():
+            case new Date().toLocaleDateString() === new Date(values.registstart).toLocaleDateString():
+            case new Date().toLocaleDateString() === new Date(values.registend).toLocaleDateString():
+                check = false;
+                break;
+            case new Date().getTime() > new Date(values.datestart).getTime():
+            case new Date().getTime() > new Date(values.dateend).getTime():
+            case new Date().getTime() > new Date(values.registstart).getTime():
+            case new Date().getTime() > new Date(values.registend).getTime():
+                check = true;
+                break;
+           
+            default: 
+            check = false;
+        }
+
+        console.log(check)
+
+        if ((values.datestart > values.dateend || values.registstart > values.registend) ||
+            (values.registstart && values.registend > values.datestart && values.dateend) || check) {                
             setErr(true);
         } else {
+            
+            setErr(false);
             axios.post(baseURL, {
                 nameevent: values.nameevent,
                 description: values.description,
