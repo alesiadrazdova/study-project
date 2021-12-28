@@ -83,7 +83,7 @@ function NoAuthWebsite({ login }) {
                             name='username'
                             onChange={handleChange}
                             required
-                            minLength={8}
+                            minLength={2}
                             maxLength={20} />
                         <input
                             value={values.password}

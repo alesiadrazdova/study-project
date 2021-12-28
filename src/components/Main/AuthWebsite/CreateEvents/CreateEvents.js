@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ContextToken } from '../../../../Context';
+import moment from 'moment';
 
 import picturepage from '../../../../assets/images/create-event.svg';
 
@@ -13,7 +14,8 @@ const baseURL = 'http://localhost:8000/list/event/create';
 
 function CreateEvents() {
 
-    const [err, setErr] = useState(false);
+    const [errDate, setErrDate] = useState(false);
+    const [errName, setErrName] = useState(false);
 
     const token = React.useContext(ContextToken);
 
@@ -42,38 +44,40 @@ function CreateEvents() {
 
         e.preventDefault();
 
-        // const registstartC = new Date(values.registstart).toLocaleDateString()
+        // const enteredRegistDate = new Date(values.registstart).toLocaleDateString()
         // const todayDate = new Date().toLocaleDateString();
-        // console.log(registstartC, todayDate)
+        // const enteredRegistDateMs = new Date().getTime();
+        // const todayDateMs = new Date().getTime();
+        // console.log(enteredRegistDate, todayDate)
 
-        let check = false;      
+        // let check = false;      
 
-        switch (true) {
-            case new Date().toLocaleDateString() === new Date(values.datestart).toLocaleDateString():
-            case new Date().toLocaleDateString() === new Date(values.dateend).toLocaleDateString():
-            case new Date().toLocaleDateString() === new Date(values.registstart).toLocaleDateString():
-            case new Date().toLocaleDateString() === new Date(values.registend).toLocaleDateString():
-                check = false;
-                break;
-            case new Date().getTime() > new Date(values.datestart).getTime():
-            case new Date().getTime() > new Date(values.dateend).getTime():
-            case new Date().getTime() > new Date(values.registstart).getTime():
-            case new Date().getTime() > new Date(values.registend).getTime():
-                check = true;
-                break;
-           
-            default: 
-            check = false;
-        }
+        // switch (true) {
+        //     case new Date().toLocaleDateString() === new Date(values.datestart).toLocaleDateString():
+        //     case new Date().toLocaleDateString() === new Date(values.dateend).toLocaleDateString():
+        //     case new Date().toLocaleDateString() === new Date(values.registstart).toLocaleDateString():
+        //     case new Date().toLocaleDateString() === new Date(values.registend).toLocaleDateString():
+        //         check = false;
+        //         break;
+        //     case new Date().getTime() > new Date(values.datestart).getTime():
+        //     case new Date().getTime() > new Date(values.dateend).getTime():
+        //     case new Date().getTime() > new Date(values.registstart).getTime():
+        //     case new Date().getTime() > new Date(values.registend).getTime():
+        //         check = true;
+        //         break;           
+        //     default: 
+        //     check = false;
+        // }
 
-        console.log(check)
+     
 
         if ((values.datestart > values.dateend || values.registstart > values.registend) ||
-            (values.registstart && values.registend > values.datestart && values.dateend) || check) {                
-            setErr(true);
+            (values.registstart && values.registend > values.datestart && values.dateend)) {                
+            setErrDate(true);
+
         } else {
             
-            setErr(false);
+            setErrDate(false);
             axios.post(baseURL, {
                 nameevent: values.nameevent,
                 description: values.description,
@@ -102,7 +106,7 @@ function CreateEvents() {
                 })
                 .catch(function (error) {
                     console.log(error);
-                    setErr(true);
+                    setErrName(true);
 
                 })
         }
@@ -117,6 +121,8 @@ function CreateEvents() {
         })
     };
 
+   
+   const formatedDate = moment(new Date().toLocaleDateString()).format('YYYY-MM-DD');
 
     return (
         <div className='creat-events'>
@@ -152,6 +158,7 @@ function CreateEvents() {
                                 pattern='[A-Za-z0-9_-]{5,50}'
                                 title='Please, only Latin letters' />
                         </div>
+                        <p className={errName ? 'message' : 'hidden'}>Event with the same name already exists!</p>
                         <div className='middle-input'>
                             <div className='block-input'>
                                 <label>Data start event*</label>
@@ -161,6 +168,7 @@ function CreateEvents() {
                                     name='datestart'
                                     className='input-dates'
                                     onChange={handleChange}
+                                    min={formatedDate}
                                     required />
                             </div>
                             <div className='block-input'>
@@ -171,6 +179,7 @@ function CreateEvents() {
                                     name='dateend'
                                     className='input-dates'
                                     onChange={handleChange}
+                                    min={formatedDate}
                                     required />
                             </div>
                             <div className='block-input'>
@@ -181,6 +190,7 @@ function CreateEvents() {
                                     name='registstart'
                                     className='input-dates'
                                     onChange={handleChange}
+                                    min={formatedDate}
                                     required />
                             </div>
                             <div className='block-input'>
@@ -191,11 +201,11 @@ function CreateEvents() {
                                     name='registend'
                                     className='input-dates'
                                     onChange={handleChange}
+                                    min={formatedDate}
                                     required />
                             </div>
                         </div>
-                        <p className={err ? 'message' : 'hidden'}>The event start date cannot be more than the end date or less than the registration dates!</p>
-
+                        <p className={errDate ? 'message' : 'hidden'}>Event start date cannot be more than the end date or less than the registration dates!</p>
                         <div>
                             <textarea
                                 value={values.description}
@@ -205,7 +215,9 @@ function CreateEvents() {
                                 className='input-area'
                                 onChange={handleChange}
                                 style={{ height: 120 }}
-                                maxLength={130} />
+                                maxLength={130}
+                                pattern='[A-Za-z0-9_-]'
+                                title='Please, only Latin letters' />
 
                             <input
                                 value={values.picture}
