@@ -122,7 +122,7 @@ function CreateEvents() {
     };
 
    
-   const formatedDate = moment(new Date().toLocaleDateString()).format('YYYY-MM-DD');
+   const carrentDate = moment(new Date().toLocaleDateString()).format('YYYY-MM-DD');
 
     return (
         <div className='creat-events'>
@@ -168,7 +168,7 @@ function CreateEvents() {
                                     name='datestart'
                                     className='input-dates'
                                     onChange={handleChange}
-                                    min={formatedDate}
+                                    min={carrentDate}
                                     required />
                             </div>
                             <div className='block-input'>
@@ -179,7 +179,7 @@ function CreateEvents() {
                                     name='dateend'
                                     className='input-dates'
                                     onChange={handleChange}
-                                    min={formatedDate}
+                                    min={carrentDate}
                                     required />
                             </div>
                             <div className='block-input'>
@@ -190,7 +190,7 @@ function CreateEvents() {
                                     name='registstart'
                                     className='input-dates'
                                     onChange={handleChange}
-                                    min={formatedDate}
+                                    min={carrentDate}
                                     required />
                             </div>
                             <div className='block-input'>
@@ -201,7 +201,7 @@ function CreateEvents() {
                                     name='registend'
                                     className='input-dates'
                                     onChange={handleChange}
-                                    min={formatedDate}
+                                    min={carrentDate}
                                     required />
                             </div>
                         </div>
