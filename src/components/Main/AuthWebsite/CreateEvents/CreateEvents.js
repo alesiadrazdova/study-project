@@ -42,34 +42,7 @@ function CreateEvents() {
 
     const handleSubmit = (e) => {
 
-        e.preventDefault();
-
-        // const enteredRegistDate = new Date(values.registstart).toLocaleDateString()
-        // const todayDate = new Date().toLocaleDateString();
-        // const enteredRegistDateMs = new Date().getTime();
-        // const todayDateMs = new Date().getTime();
-        // console.log(enteredRegistDate, todayDate)
-
-        // let check = false;      
-
-        // switch (true) {
-        //     case new Date().toLocaleDateString() === new Date(values.datestart).toLocaleDateString():
-        //     case new Date().toLocaleDateString() === new Date(values.dateend).toLocaleDateString():
-        //     case new Date().toLocaleDateString() === new Date(values.registstart).toLocaleDateString():
-        //     case new Date().toLocaleDateString() === new Date(values.registend).toLocaleDateString():
-        //         check = false;
-        //         break;
-        //     case new Date().getTime() > new Date(values.datestart).getTime():
-        //     case new Date().getTime() > new Date(values.dateend).getTime():
-        //     case new Date().getTime() > new Date(values.registstart).getTime():
-        //     case new Date().getTime() > new Date(values.registend).getTime():
-        //         check = true;
-        //         break;           
-        //     default: 
-        //     check = false;
-        // }
-
-     
+        e.preventDefault();    
 
         if ((values.datestart > values.dateend || values.registstart > values.registend) ||
             (values.registstart && values.registend > values.datestart && values.dateend)) {                
