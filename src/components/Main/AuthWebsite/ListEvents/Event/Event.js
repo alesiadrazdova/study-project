@@ -4,19 +4,18 @@ import { Button } from '@mui/material';
 
 import './Event.css'
 
-function Event(props) {
-    
 
-    const { events } = props;
-    const { handleSubmit } = props;
+function Event({ events, handleSubmit, handleSubmitDelete}) {
 
+    const currentDate = Date.now();
+  
     if (!events || events.length === 0) return <p> No data</p>
-    
 
     return (
         <div className='card-wrapper'>
             {events.map((event) => {
-                return <div key={event._id + new Date()} className='card'>
+                
+                return <div key={event._id + currentDate} className='card'>
                     <div>
                         <img src={event.picture} alt='img' />
                     </div>
@@ -27,7 +26,8 @@ function Event(props) {
                     <p><span>End of registration: </span>{event.registend}</p>
                     <p className='last-description'><span>Location: </span>{event.address}</p>
                     <p>{event.description}</p>
-                    <Button onClick={(e) => handleSubmit(e, event._id)} variant='contained'>Registration</Button>
+                    <Button style={{marginBottom: 10}} onClick={(e) => handleSubmit(e, event._id)} variant='contained'>Registration</Button>
+                    <Button onClick={(e) => handleSubmitDelete(e, event._id)} variant='outlined'>Delete</Button>
                 </div>
             })}
         </div>

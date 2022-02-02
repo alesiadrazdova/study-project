@@ -7,6 +7,7 @@ const baseURL = 'http://localhost:8000/auth/alluserevents';
 
 function BookedEvents() {
 
+
     const token = React.useContext(ContextToken);
 
     
@@ -32,9 +33,39 @@ function BookedEvents() {
             };
     }, [setEventState, token]);
 
+    
+
+    const handleSubmitDelete = (e, eventID) => {
+      
+        console.log(eventID);
+
+        e.preventDefault();
+
+        axios.delete(`http://localhost:8000/auth/alluserevents/${eventID}`, { 
+            params: {
+                id: eventID
+            },
+            headers: {
+                token: token
+            }
+
+         })
+            .then((res) => {
+                const response = res.data;
+                console.log(response)
+
+                setEventState({
+                    events: response
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    };
+
     return (
         <div className="App">
-            <Event events={eventState.events} />
+            <Event events={eventState.events} handleSubmitDelete={handleSubmitDelete}/>
         </div>
     );
 };
