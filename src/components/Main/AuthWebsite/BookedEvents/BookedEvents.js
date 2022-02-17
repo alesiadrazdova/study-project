@@ -3,6 +3,7 @@ import Event from '../ListEvents/Event/Event';
 import axios from 'axios';
 import { ContextToken } from '../../../../Context';
 
+
 const baseURL = 'http://localhost:8000/auth/alluserevents';
 
 function BookedEvents() {
@@ -20,7 +21,7 @@ function BookedEvents() {
         
             .then((res) => {
                 const response = res.data;
-
+                console.log("preview", response)
                 setEventState({
                     events: response
                 });
@@ -46,7 +47,7 @@ function BookedEvents() {
                 id: eventID
             },
             headers: {
-                token: token
+                token
             }
 
          })
@@ -64,7 +65,7 @@ function BookedEvents() {
     };
 
     return (
-        <div className="App">
+        <div className="App" >
             <Event events={eventState.events} handleSubmitDelete={handleSubmitDelete}/>
         </div>
     );

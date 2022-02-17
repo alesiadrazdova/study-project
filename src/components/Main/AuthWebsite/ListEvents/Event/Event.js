@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button } from '@mui/material';
 
-import './Event.css'
+import './Event.css';
 
 
 function Event({ events, handleSubmit, handleSubmitDelete}) {
@@ -10,11 +10,10 @@ function Event({ events, handleSubmit, handleSubmitDelete}) {
     const currentDate = Date.now();
   
     if (!events || events.length === 0) return <p> No data</p>
-
+    console.dir(events)
     return (
         <div className='card-wrapper'>
             {events.map((event) => {
-                
                 return <div key={event._id + currentDate} className='card'>
                     <div>
                         <img src={event.picture} alt='img' />
